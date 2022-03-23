@@ -43,7 +43,10 @@ public class Robot extends TimedRobot {
   CameraServer driveCam;
 
   // Auto
-  Timer driveTime;
+  Timer driveTime = new Timer();
+  double autoSpeed = 0.5; //50% speed during auton
+  enum autons {BASIC, NONE; }
+  autons autoToRun = autons.BASIC; //choose which autonomous to run from the enum autons
 
   // Constants 
 
@@ -75,10 +78,6 @@ public class Robot extends TimedRobot {
     //autoBool = new SendableChooser<Boolean>();
     CameraServer.startAutomaticCapture();
 
-    // Auto
-    driveTime = new Timer();
-    
-
   }
 
 
@@ -89,12 +88,24 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    
+    driveTime.reset(); //reset the timer in init
+    driveTime.start(); //start the timer
   }
 
   @Override
   public void autonomousPeriodic() {
-
+    switch (autoToRun) {
+      case BASIC: //Basic Auton
+        if (driveTime.get() < 2.0) { //2 seconds
+          drive.arcadeDrive(-autoSpeed, 0.0); //drive backward, no turn. For forward, use autoSpeed instead of -autoSpeed
+        } else {
+          drive.stopMotor(); //stop
+        }
+        break;
+      case NONE: //none or anything else, do nothing
+      default:
+        break;
+    }
   }
 
   @Override
