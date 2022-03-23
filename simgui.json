@@ -1,0 +1,22 @@
+{
+  "HALProvider": {
+    "Other Devices": {
+      "Talon FX[6]": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon FX[9]": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive"
+    }
+  }
+}

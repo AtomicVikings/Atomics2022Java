@@ -97,7 +97,7 @@ public class Robot extends TimedRobot {
     switch (autoToRun) {
       case BASIC: //Basic Auton
         if (driveTime.get() < 2.0) { //2 seconds
-          drive.arcadeDrive(-autoSpeed, 0.0); //drive backward, no turn. For forward, use autoSpeed instead of -autoSpeed
+          drive.arcadeDrive(autoSpeed, 0.0); //drive backward, no turn. For forward, use -autoSpeed instead of autoSpeed
         } else {
           drive.stopMotor(); //stop
         }
